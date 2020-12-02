@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#2196F3"
-        android:text="@string/hello_blank_fragment" />
+        android:text="@string/details_fragment"
+        android:textSize="30sp"/>
 
 </FrameLayout>
