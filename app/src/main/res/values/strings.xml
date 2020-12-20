@@ -7,4 +7,5 @@
     <string name="add">Add</string>
     <string name="favourite_fragment">Favourite Fragment</string>
     <string name="details_fragment">details fragment</string>
+    <string name="list">List</string>
 </resources>
