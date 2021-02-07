@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatme.R
@@ -28,11 +29,11 @@ class MyAdapter(): RecyclerView.Adapter<MyHolder>() {
          val data = dataList[position]
          holder.name.text = data.name
          holder.country.text = data.country
+
          // glide
          Glide.with(context).load(data.image_url).into(holder.image)
 
      }
-
     fun setData(list : List<Restaurant>){
         this.dataList = list
         notifyDataSetChanged()

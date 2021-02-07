@@ -19,10 +19,10 @@ import com.example.eatme.viewmodel.MainViewModelFactory
 import kotlinx.android.synthetic.main.fragment_list.*
 
 class ListFragment : Fragment() {
-
-    lateinit var viewModel : MainViewModel
-    lateinit var recyclerView : RecyclerView
-    lateinit var list: MutableLiveData<RequestRestaurants>
+    private lateinit var viewModel : MainViewModel
+    private lateinit var recyclerView : RecyclerView
+    private lateinit var list: MutableLiveData<RequestRestaurants>
+    //private lateinit var list: MutableLiveData<List<Restaurant>>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,14 +39,16 @@ class ListFragment : Fragment() {
 
         // set up the RecyclerView
         val adapter = MyAdapter()
-        recyclerView = view.findViewById<RecyclerView>(R.id.my_recycler_view)
+        recyclerView = view.findViewById(R.id.my_recycler_view)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
 
         list = viewModel.myResponse
+
         list.value?.let { adapter.setData( it.restaurants) }
 
+       // list.observe(viewLifecycleOwner, Observer { response -> adapter.setData(response)})
         return view
     }
 

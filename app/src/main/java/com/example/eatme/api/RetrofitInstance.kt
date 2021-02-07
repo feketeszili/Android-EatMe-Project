@@ -1,5 +1,6 @@
 package com.example.eatme.api
 
+import com.example.eatme.util.Constants
 import com.example.eatme.util.Constants.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

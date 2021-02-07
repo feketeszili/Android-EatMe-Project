@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         val detailsFragment = DetailsFragment()
         val favouriteFragment = FavouriteFragment()
         val profileFragment = ProfileFragment()
+        val insertFragment = InsertFragment()
+
         val navigationView: BottomNavigationView = findViewById(R.id.navigation_view)
 
 
@@ -28,13 +29,15 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_list -> makeCurrentFragment(listFragment)
                 R.id.nav_favourite -> makeCurrentFragment(favouriteFragment)
                 R.id.nav_profile -> makeCurrentFragment(profileFragment)
+
             }
             true
         }
 
+
     }
 
-    private fun makeCurrentFragment(fragment: Fragment) {
+     fun makeCurrentFragment(fragment: Fragment) {
             supportFragmentManager.beginTransaction().apply {
                 replace(R.id.nav_host_fragment, fragment)
                 commit()
