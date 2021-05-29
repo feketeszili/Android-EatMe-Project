@@ -8,7 +8,7 @@ import android.widget.Toast
 
 val DATABASE_NAME = "ProfileDatabase"
 val TABLE_NAME = "ProfileData"
-val COL_NAME = "name"
+val COL_NAME = "userName"
 val COL_EMAIL = "email"
 val COL_PHONE = "phone"
 val COL_AGE = "age"
@@ -34,7 +34,7 @@ class DataBaseHandler(var context: Context): SQLiteOpenHelper(context, DATABASE_
     fun insertData(profileData: ProfileData){
         val db = this.writableDatabase
         var cv = ContentValues()
-        cv.put(COL_NAME, profileData.name)
+        cv.put(COL_NAME, profileData.userName)
         cv.put(COL_EMAIL, profileData.email)
         cv.put(COL_PHONE, profileData.phone)
         cv.put(COL_AGE, profileData.age)
@@ -56,7 +56,7 @@ class DataBaseHandler(var context: Context): SQLiteOpenHelper(context, DATABASE_
             do{
                 var profileData = ProfileData()
                 profileData.id = result.getString(result.getColumnIndex(COL_ID)).toInt()
-                profileData.name = result.getString(result.getColumnIndex(COL_NAME))
+                profileData.userName = result.getString(result.getColumnIndex(COL_NAME))
                 profileData.email = result.getString(result.getColumnIndex(COL_EMAIL))
                 profileData.phone= result.getString(result.getColumnIndex(COL_PHONE)).toInt()
                 profileData.age=result.getString(result.getColumnIndex(COL_AGE)).toInt()

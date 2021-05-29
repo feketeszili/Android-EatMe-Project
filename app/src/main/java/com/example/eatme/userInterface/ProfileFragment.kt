@@ -38,9 +38,9 @@ class ProfileFragment : Fragment() {
         val insertFragment = InsertFragment()
 
         insertButton.setOnClickListener {
-            //findNavController().navigate(R.id.action_profileFragment_to_insertFragment)
+            findNavController().navigate(R.id.action_profileFragment_to_insertFragment)
         //mainActivity.makeInsertFragment()
-           mainActivity.makeCurrentFragment(insertFragment)
+           //mainActivity.makeCurrentFragment(insertFragment)
 
         }
 
@@ -49,7 +49,7 @@ class ProfileFragment : Fragment() {
         if (data != null) {
             for (i in 0 until data.size) {
                 profiledata.append(
-                    "\n Name: " + data[i].name + "\n Email" + data[i].email +
+                    "\n Name: " + data[i].userName + "\n Email" + data[i].email +
                             "\n Phone: " + data[i].phone + "\n Age: " + data[i].age + "\n Address: " + data[i].address
                 )
             }

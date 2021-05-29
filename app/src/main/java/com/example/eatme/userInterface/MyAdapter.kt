@@ -15,14 +15,15 @@ import kotlinx.android.synthetic.main.item_view.view.*
 class MyAdapter(): RecyclerView.Adapter<MyHolder>() {
 
      private var dataList: List<Restaurant> = emptyList()
-     private lateinit var context: Context
+    //private var dataList = emptyList<Restaurant>()
+    private lateinit var context: Context
 
 
      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         context = parent.context
          return MyHolder(LayoutInflater.from(context).inflate(R.layout.item_view, parent, false))
      }
-// oncreateviewholderben deklaralni minden szart es idt adni
+// oncreateviewholderben deklaralni mindent és idt adni
 
      override fun onBindViewHolder(holder: MyHolder, position: Int) {
 

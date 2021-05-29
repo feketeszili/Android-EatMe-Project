@@ -2,7 +2,7 @@ package com.example.eatme.userInterface
 
 class ProfileData {
     var id: Int = 0
-    var name: String = ""
+    var userName: String = ""
     var email: String = ""
     var phone: Int = 0
     var age: Int = 0
@@ -10,7 +10,7 @@ class ProfileData {
 
 
     constructor( name: String, email: String, phone: Int, age: Int, address: String ){
-        this.name = name
+        this.userName = name
         this.email = email
         this.phone = phone
         this.age = age

@@ -9,10 +9,9 @@ import retrofit2.Response
 interface Api {
 
     @GET("restaurants")
-    //suspend fun getRestaurant(): Restaurant
-    suspend fun getRestaurants(): RequestRestaurants
+    //suspend fun getRestaurants(): Response<RequestRestaurants>
 
 // try with query
-    /*suspend fun getRestaurants(  @Query("name") name:String? = null,
-                                 @Query("country") country:String? = "US"):RequestRestaurants*/
+    suspend fun getRestaurants(  @Query("name") name:String? = null,
+                                 @Query("country") country:String? = "US"):RequestRestaurants
 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.PersistableBundle
+import android.util.Log
 
 import okhttp3.internal.http2.Http2Reader
 
@@ -14,16 +15,16 @@ import okhttp3.internal.http2.Http2Reader
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+            setContentView(R.layout.activity_splash)
 
-        supportActionBar?.hide()
+            supportActionBar?.hide()
             val time = 2000
-              Handler().postDelayed({
-            val intent = Intent(this@SplashActivity, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        },time.toLong())
-
+            Handler().postDelayed({
+                val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }, time.toLong())
     }
 }

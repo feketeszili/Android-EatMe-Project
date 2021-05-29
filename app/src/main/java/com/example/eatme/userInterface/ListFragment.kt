@@ -1,6 +1,7 @@
 package com.example.eatme.userInterface
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,41 +18,44 @@ import com.example.eatme.repository.Repository
 import com.example.eatme.viewmodel.MainViewModel
 import com.example.eatme.viewmodel.MainViewModelFactory
 import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.fragment_list.view.*
 
 class ListFragment : Fragment() {
     private lateinit var viewModel : MainViewModel
     private lateinit var recyclerView : RecyclerView
-    private lateinit var list: MutableLiveData<RequestRestaurants>
-    //private lateinit var list: MutableLiveData<List<Restaurant>>
+    //private lateinit var list: MutableLiveData<RequestRestaurants>
+    private lateinit var list: MutableLiveData<List<Restaurant>>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_list, container, false)
+        try {
+            // Inflate the layout for this fragment
+            val view: View = inflater.inflate(R.layout.fragment_list, container, false)
 
-        // set up the backend to get the data
-        val repository = Repository()
-        val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getRestaurants()
+            // set up the backend to get the data
+            val repository = Repository()
+            val viewModelFactory = MainViewModelFactory(repository)
+            viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+            viewModel.getRestaurants()
 
-        // set up the RecyclerView
-        val adapter = MyAdapter()
-        recyclerView = view.findViewById(R.id.my_recycler_view)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.setHasFixedSize(true)
+            // set up the RecyclerView
+            val adapter = MyAdapter()
+            recyclerView = view.findViewById(R.id.my_recycler_view)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(activity)
+            recyclerView.setHasFixedSize(true)
 
-        list = viewModel.myResponse
-
-        list.value?.let { adapter.setData( it.restaurants) }
-
-       // list.observe(viewLifecycleOwner, Observer { response -> adapter.setData(response)})
+            //list = viewModel.myResponse
+            //list.value?.let { adapter.setData() }
+            viewModel.myResponse.observe(viewLifecycleOwner, Observer { response ->
+                adapter.setData(response)
+            })
+        } catch(e: Exception){
+            Log.e("EXCEPTION IN LIST FRAGMENT", e.toString())
+        }
         return view
     }
-
-
 
 }
