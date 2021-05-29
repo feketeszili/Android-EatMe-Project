@@ -3,16 +3,14 @@ package com.example.eatme
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.eatme.userInterface.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
-import com.example.eatme.databinding.ActivityMainBinding
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,53 +49,41 @@ class MainActivity : AppCompatActivity() {
         It may not be obvious which fragment class's onCreateView() to do this to,
         in which case, do it to each fragment class that's used in the layout that caused the problem.
          */
-        try {
+        //try {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_main)
 
-            val binding =
-                DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-//NavigationHostFragment
-            //nav_host_fragment
+            val bottomNav: BottomNavigationView = findViewById(R.id.navigatonView)
             val navController = findNavController(R.id.NavigationHostFragment)
-            val bottomNav: BottomNavigationView = binding.navigatonView
+            val appBarConfiguration = AppBarConfiguration(setOf(
+                R.id.detailsFragment, R.id.listFragment, R.id.favouriteFragment, R.id.profileFragment, R.id.insertFragment))
+            setupActionBarWithNavController(navController, appBarConfiguration)
             bottomNav.setupWithNavController(navController)
-        }catch (e: Exception){
-            Log.e("EXCEPTION IN MAIN ACTIVITY", e.toString())
-        }
-      /*  val listFragment = ListFragment()
+        //}catch (e: Exception){
+         //   Log.e("EXCEPTION IN MAIN ACTIVITY", e.toString())
+       // }
+
+        val listFragment = ListFragment()
         val detailsFragment = DetailsFragment()
         val favouriteFragment = FavouriteFragment()
         val profileFragment = ProfileFragment()
         val insertFragment = InsertFragment()
 
-        val navigationView: BottomNavigationView = findViewById(R.id.navigation_view)
 
-
-          navigationView.setOnNavigationItemSelectedListener{
+        bottomNav.setOnNavigationItemSelectedListener{
             when(it.itemId){
                 R.id.nav_list -> makeCurrentFragment(listFragment)
                 R.id.nav_favourite -> makeCurrentFragment(favouriteFragment)
                 R.id.nav_profile -> makeCurrentFragment(profileFragment)
-
             }
             true
         }
-
-
     }
-
-     fun makeCurrentFragment(fragment: Fragment) {
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.nav_host_fragment, fragment)
-                commit()
-            }
-*/
+    private fun makeCurrentFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.NavigationHostFragment, fragment)
+            commit()
         }
 
-
-
-
-
+    }
 }
-

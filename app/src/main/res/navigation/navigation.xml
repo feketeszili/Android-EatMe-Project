@@ -21,16 +21,20 @@
             app:destination="@id/detailsFragment" />
         <action
             android:id="@+id/action_listFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/nav_profile" />
         <action
             android:id="@+id/action_listFragment_to_favouriteFragment"
-            app:destination="@id/favouriteFragment" />
+            app:destination="@id/nav_favourite" />
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
         android:name="com.example.eatme.userInterface.FavouriteFragment"
         android:label="fragment_favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.eatme.userInterface.ProfileFragment"
