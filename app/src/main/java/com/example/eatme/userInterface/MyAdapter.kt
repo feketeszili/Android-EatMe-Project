@@ -2,7 +2,6 @@ package com.example.eatme.userInterface
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -31,11 +30,7 @@ class MyAdapter(): RecyclerView.Adapter<MyHolder>() {
 
          val detailsFragment = DetailsFragment()
 
-         //val mainActivity = (activity as MainActivity)
-         //holder.image.setOnClickListener { mainActivity.makeCurrentFragment(detailsFragment) }
-
-         holder.image.setOnClickListener(View.OnClickListener {
-             //fragmentJump(position)
+         holder.image.setOnClickListener {
              val address = data.address
              val area = data.area
              val city = data.city
@@ -51,45 +46,33 @@ class MyAdapter(): RecyclerView.Adapter<MyHolder>() {
              val price = data.price
              val reserveUrl = data.reserve_url
              val state = data.state
-             val bundle = bundleOf("address" to address,
-             "area" to area,
-             "city" to city,
-             "country" to country,
-             "id" to id,
-             "imageUrl" to imageUrl,
-             "lat" to lat,
-             "lng" to lng,
-             "mobile_reserve_url" to mobilReserveUrl,
-             "name" to name,
-             "phone" to phone,
-             "postal_code" to postalCode,
-             "price" to price,
-             "reserve_url" to reserveUrl,
-             "state" to state)
+             val bundle = bundleOf(
+                 "address" to address,
+                 "area" to area,
+                 "city" to city,
+                 "country" to country,
+                 "id" to id,
+                 "imageUrl" to imageUrl,
+                 "lat" to lat,
+                 "lng" to lng,
+                 "mobile_reserve_url" to mobilReserveUrl,
+                 "name" to name,
+                 "phone" to phone,
+                 "postal_code" to postalCode,
+                 "price" to price,
+                 "reserve_url" to reserveUrl,
+                 "state" to state
+             )
              detailsFragment.arguments = bundle
-             fragmentJump(detailsFragment)
-          /*   val detailFragment = DetailsFragment()
-             val bundle = Bundle()
-             bundle.putInt("id",dataList[position].id)
-             detailFragment.arguments = bundle
-             (activity as MainActivity).supportFragmentManager.beginTransaction().apply {
-                 replace(R.id.listFragment,detailFragment)
-                 commit()
-             }*/
-         })
-
+             switchContent(R.id.NavigationHostFragment, detailsFragment)
+         }
 
          // We can load the images from backend with glide
          //Glide.with(context).load(data.image_url).into(holder.image)
 
      }
 
-    private fun fragmentJump(mItemSelected: DetailsFragment) {
-        switchContent(R.id.NavigationHostFragment, mItemSelected)
-    }
-
     fun switchContent(id: Int, fragment: Fragment) {
-        if (context == null) return
         if (context is MainActivity) {
             val mainActivity = context as MainActivity
             val frag: Fragment = fragment

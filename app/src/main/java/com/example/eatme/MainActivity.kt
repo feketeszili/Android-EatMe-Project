@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+    // I have to use this function instead of switchContent for bottomNav,
+    // because the program crashes if I want to swap between fragments
     fun makeCurrentFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.NavigationHostFragment, fragment)

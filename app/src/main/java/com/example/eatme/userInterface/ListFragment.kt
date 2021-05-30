@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatme.R
-import com.example.eatme.model.Restaurant
 import com.example.eatme.repository.Repository
 import com.example.eatme.viewmodel.MainViewModel
 import com.example.eatme.viewmodel.MainViewModelFactory
@@ -28,7 +26,6 @@ class ListFragment : Fragment(), CoroutineScope {
     private lateinit var viewModel : MainViewModel
     private lateinit var recyclerView : RecyclerView
     private lateinit var restaurantAdapter: MyAdapter
-    private lateinit var list: MutableLiveData<List<Restaurant>>
 
     override fun onCreateView(
         inflater: LayoutInflater,
