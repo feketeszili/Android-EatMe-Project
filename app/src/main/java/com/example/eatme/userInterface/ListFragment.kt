@@ -1,11 +1,10 @@
 package com.example.eatme.userInterface
 
 import android.os.Bundle
-
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -21,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
+
 
 class ListFragment : Fragment(), CoroutineScope {
     override val coroutineContext: CoroutineContext
@@ -55,6 +55,8 @@ class ListFragment : Fragment(), CoroutineScope {
         viewModel.myResponse.observe(viewLifecycleOwner, Observer { response ->
             restaurantAdapter.setData(response)
         })
+
+
         return root
     }
 
