@@ -1,21 +1,22 @@
 package com.example.eatme.userInterface
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.net.toUri
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.eatme.MainActivity
 import com.example.eatme.R
 import com.example.eatme.model.Restaurant
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.item_view.view.*
+
 
 class MyAdapter(): RecyclerView.Adapter<MyHolder>() {
 
      private var dataList: List<Restaurant> = emptyList()
-    //private var dataList = emptyList<Restaurant>()
     private lateinit var context: Context
 
 
@@ -23,7 +24,6 @@ class MyAdapter(): RecyclerView.Adapter<MyHolder>() {
         context = parent.context
          return MyHolder(LayoutInflater.from(context).inflate(R.layout.item_view, parent, false))
      }
-// oncreateviewholderben deklaralni mindent és idt adni
 
      override fun onBindViewHolder(holder: MyHolder, position: Int) {
 
@@ -31,11 +31,37 @@ class MyAdapter(): RecyclerView.Adapter<MyHolder>() {
          holder.name.text = data.name
          holder.country.text = data.country
 
-         // glide
-         Glide.with(context).load(data.image_url).into(holder.image)
+         val detailsFragment = DetailsFragment()
+
+         //val mainActivity = (activity as MainActivity)
+         //holder.image.setOnClickListener { mainActivity.makeCurrentFragment(detailsFragment) }
+
+         holder.image.setOnClickListener(View.OnClickListener { fragmentJump(position) })
+
+
+         // We can load the images from backend with glide
+         //Glide.with(context).load(data.image_url).into(holder.image)
 
      }
-    fun setData(list : List<Restaurant>){
+
+    private fun fragmentJump(mItemSelected: Int) {
+        val detailsFragment = DetailsFragment()
+        //val bundle = Bundle()
+        //bundle.putParcelable("item_selected_key", mItemSelected)
+        //detailsFragment.setArguments(bundle)
+        switchContent(R.id.NavigationHostFragment, detailsFragment)
+    }
+
+    fun switchContent(id: Int, fragment: Fragment) {
+        if (context == null) return
+        if (context is MainActivity) {
+            val mainActivity = context as MainActivity
+            val frag: Fragment = fragment
+            mainActivity.switchContent(id, frag)
+        }
+    }
+
+    fun setData(list: List<Restaurant>){
         this.dataList = list
         notifyDataSetChanged()
 
@@ -43,3 +69,7 @@ class MyAdapter(): RecyclerView.Adapter<MyHolder>() {
 
      override fun getItemCount(): Int = dataList.size
  }
+
+private fun View.setOnClickListener(onClickListener: View.OnClickListener, function: () -> Unit) {
+
+}

@@ -2,6 +2,7 @@ package com.example.eatme.userInterface
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,8 +21,6 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_profile, container, false)
 
         val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
 
@@ -32,16 +31,8 @@ class ProfileFragment : Fragment() {
 
         var db = context?.let { DataBaseHandler(context = it) }
 
-
-
-        val mainActivity = MainActivity()
-        val insertFragment = InsertFragment()
-
         insertButton.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_insertFragment)
-        //mainActivity.makeInsertFragment()
-           //mainActivity.makeCurrentFragment(insertFragment)
-
         }
 
         var data = db?.readData()
