@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.eatme.MainActivity
 import com.example.eatme.R
 
 
@@ -28,8 +29,10 @@ class ProfileFragment : Fragment() {
 
         var db = context?.let { DataBaseHandler(context = it) }
 
+        val insertFragment = InsertFragment()
         insertButton.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_insertFragment)
+            //findNavController().navigate(R.id.action_profileFragment_to_insertFragment)
+            switchContent(R.id.NavigationHostFragment, insertFragment )
         }
 
         var data = db?.readData()
@@ -51,6 +54,14 @@ class ProfileFragment : Fragment() {
             startActivityForResult(gallery, 100)
         }
     return view
+    }
+
+    fun switchContent(id: Int, fragment: Fragment) {
+        if (context is MainActivity) {
+            val mainActivity = context as MainActivity
+            val frag: Fragment = fragment
+            mainActivity.switchContent(id, frag)
+        }
     }
 }
 

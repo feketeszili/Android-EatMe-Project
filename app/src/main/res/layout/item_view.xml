@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000">
+        android:background="@drawable/my_border">
 
 
         <ImageView
@@ -30,7 +30,15 @@
             android:id="@+id/name"
             android:layout_width="310dp"
             android:layout_height="51dp"
+            android:drawablePadding="@dimen/text_margin"
+            android:fontFamily="@font/amarante"
+            android:padding="@dimen/text_margin"
+            android:text="dsadsadsadasdsadas"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#2D8E8E"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:fontFamily="@font/amarante"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -41,8 +49,16 @@
             android:id="@+id/country"
             android:layout_width="309dp"
             android:layout_height="48dp"
+            android:drawablePadding="@dimen/text_margin"
             android:drawableTint="#FFFFFF"
+            android:fontFamily="@font/almendra_italic"
+            android:padding="@dimen/text_margin"
+            android:paddingHorizontal="?android:attr/windowTitleSize"
+            android:text="asdsadasdasdas"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#2D8E8E"
+            android:textSize="22sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/avatar"

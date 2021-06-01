@@ -19,16 +19,15 @@ class InsertFragment : Fragment() {
 
         val view: View = inflater.inflate(R.layout.fragment_insert, container, false)
 
-        val insertButton: Button = view.findViewById<Button>(R.id.insertButton)
+        val insertButton: Button = view.findViewById(R.id.insertButton)
 
-        val name: EditText = view.findViewById<EditText>(R.id.name)
-        val email: EditText = view.findViewById<EditText>(R.id.email)
-        val phone: EditText = view.findViewById<EditText>(R.id.phone)
-        val age: EditText = view.findViewById<EditText>(R.id.age)
-        val address: EditText = view.findViewById<EditText>(R.id.address)
+        val name: EditText = view.findViewById(R.id.name)
+        val email: EditText = view.findViewById(R.id.email)
+        val phone: EditText = view.findViewById(R.id.phone)
+        val age: EditText = view.findViewById(R.id.age)
+        val address: EditText = view.findViewById(R.id.address)
 
         var db = context?.let { DataBaseHandler(context = it) }
-
         fun insert(){
             if( name.text.toString().length > 0 &&
                     email.text.toString().length > 0 &&

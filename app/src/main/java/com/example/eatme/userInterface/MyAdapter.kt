@@ -1,19 +1,22 @@
 package com.example.eatme.userInterface
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatme.MainActivity
 import com.example.eatme.R
 import com.example.eatme.model.Restaurant
+import com.example.eatme.util.Constants.Companion.favList
 
 
 class MyAdapter(): RecyclerView.Adapter<MyHolder>() {
 
-     private var dataList: List<Restaurant> = emptyList()
+    private var dataList: List<Restaurant> = emptyList()
     private lateinit var context: Context
 
 
@@ -65,6 +68,13 @@ class MyAdapter(): RecyclerView.Adapter<MyHolder>() {
              )
              detailsFragment.arguments = bundle
              switchContent(R.id.NavigationHostFragment, detailsFragment)
+         }
+
+         holder.image.setOnLongClickListener {
+             favList.add(data)
+             Log.d("lista", favList.get(0).toString())
+             Toast.makeText(context,"Added to favourites",Toast.LENGTH_SHORT).show()
+             true
          }
 
          // We can load the images from backend with glide
